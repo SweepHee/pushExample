@@ -28,7 +28,7 @@ public class PushServiceImpl implements PushService {
 
     /*
     * params = [title=푸시제목, body=푸시내용, ...]
-    * pushTokens = [fcmToken=asdfefefesfsef..., ...]
+    * pushTokens = [pushtoken=asdfefefesfsef..., ...]
     **/
     @Override
     @Async
