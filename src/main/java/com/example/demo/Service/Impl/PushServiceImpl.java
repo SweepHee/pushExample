@@ -24,6 +24,12 @@ import java.util.Map;
 @EnableAsync
 public class PushServiceImpl implements PushService {
 
+
+
+    /*
+    * params = [title=푸시제목, body=푸시내용, ...]
+    * pushTokens = [fcmToken=asdfefefesfsef..., ...]
+    **/
     @Override
     @Async
     public void send(HashMap<String, String> params, List<Map<String, Object>> pushTokens)
