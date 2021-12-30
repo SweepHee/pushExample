@@ -5,6 +5,9 @@ import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseOptions;
 import com.google.firebase.messaging.*;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import java.io.FileInputStream;
@@ -17,9 +20,12 @@ import java.util.Map;
 
 
 @Service
+@Configuration
+@EnableAsync
 public class PushServiceImpl implements PushService {
 
     @Override
+    @Async
     public void send(HashMap<String, String> params, List<Map<String, Object>> pushTokens)
             throws FirebaseMessagingException, IOException {
 
@@ -75,7 +81,7 @@ public class PushServiceImpl implements PushService {
                 tokenList.clear();
                 BatchResponse response = FirebaseMessaging.getInstance().sendMulticast(message);
 
-                /* 실패갯수 담기. 필요없는 경우가 대부분이므로 주석처리 */
+                /* 실패갯수 담기 */
 //                if(response.getFailureCount() > 0) {
 //                    failCount += response.getFailureCount();
 //                }
@@ -105,7 +111,7 @@ public class PushServiceImpl implements PushService {
 
             BatchResponse response = FirebaseMessaging.getInstance().sendMulticast(message);
 
-            /* 실패갯수 담기. 필요없는 경우가 대부분이므로 주석처리 */
+            /* 실패갯수 담기 */
 //                if(response.getFailureCount() > 0) {
 //                    failCount += response.getFailureCount();
 //                }
